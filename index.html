@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es-mx">
+  <head>
+    <title>Evaluación</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="styles.css" />
+    <script type="module" src="script.js"></script>
+  </head>
+  <body>
+    <div class="class">
+      <h1>Evaluación</h1>
+
+      <main>
+        <div class="input-group">
+          <fieldset id="characters">
+            <legend>Personaje:</legend>
+
+            <div>
+              <input
+                type="radio"
+                id="luke"
+                name="character"
+                value="luke"
+                checked
+              />
+              <label for="luke">Luke Skywalker</label>
+            </div>
+
+            <div>
+              <input
+                type="radio"
+                id="gandalf"
+                name="character"
+                value="gandalf"
+              />
+              <label for="gandalf">Gandalf Mithrandir</label>
+            </div>
+
+            <div>
+              <input type="radio" id="harry" name="character" value="harry" />
+              <label for="harry">Harry Potter</label>
+            </div>
+
+            <div>
+              <input type="radio" id="marty" name="character" value="marty" />
+              <label for="marty">Marty Mcfly</label>
+            </div>
+          </fieldset>
+
+          <div class="option-output" id="charcater-img"></div>
+        </div>
+
+        <div class="input-group">
+          <div class="input-group-text">
+            <label for="vehicle">Tamaño de vehiculo:</label>
+            <input
+              id="vehicle"
+              type="range"
+              min="10"
+              max="50"
+              step="10"
+              value="10"
+            />
+          </div>
+          <div class="option-output" id="vehicle-img"></div>
+        </div>
+
+        <div class="input-group">
+          <div class="option-output" id="background-img"></div>
+          <div class="input-group-text">
+            <label class="input-group-text" for="background">Escenario:</label>
+            <select name="background" id="background">
+              <option value="tatooine">Tatooine</option>
+              <option value="gondor">Gondor</option>
+              <option value="hogwarts">Hogwarts</option>
+              <option value="hill_valley">Hill Valley</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="option-output" id="weapon-img"></div>
+          <div class="input-group-text">
+            <label class="input-group-text" for="weapon">Arma:</label>
+            <select name="weapon" id="weapon">
+              <option value="lightsaber">Sable de luz</option>
+              <option value="cane">Báculo</option>
+              <option value="wand">Varita</option>
+              <option value="hoverboard">Patineta voladora</option>
+            </select>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

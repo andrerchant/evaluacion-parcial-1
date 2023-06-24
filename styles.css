@@ -1,0 +1,129 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  color: black;
+  background-color: white;
+}
+
+main {
+  padding: 1rem;
+}
+
+h1 {
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-bottom: 0;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+body {
+  background: linear-gradient(180deg, darkgray, gray);
+  border: none;
+  color: #555;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  min-height: calc(100vh);
+  font-family: sans-serif;
+}
+
+hr {
+  border-color: silver;
+}
+
+button {
+  border: none;
+  background: lightseagreen;
+  color: floralwhite;
+  cursor: pointer;
+  padding: 0.55rem;
+}
+
+button:hover {
+  background: darkcyan;
+}
+
+input,
+select {
+  background: rgba(22, 22, 22, 0.5);
+  border: none;
+  border-bottom: 2px solid darkturquoise;
+  color: darkturquoise;
+  cursor: pointer;
+  padding: 0.5rem;
+  text-align: center;
+  outline: none;
+}
+
+.input-group-text select {
+  min-width: 11rem;
+}
+
+input::placeholder {
+  color: lightblue;
+}
+
+select:focus,
+input:focus,
+input:hover,
+select:hover {
+  background: rgba(22, 22, 22, 0.7);
+  border-color: aqua;
+  color: aqua;
+}
+
+label {
+  color: grayscale;
+}
+
+a {
+  color: white;
+}
+
+a:visited,
+a:hover {
+  color: whitesmoke;
+}
+
+.class {
+  margin: 0 auto;
+  max-width: 33rem;
+}
+
+/* img {
+  border-radius: 0.5rem;
+  box-shadow: 0px 13px 4px -9px;
+} */
+
+.content {
+  padding: 1rem 0;
+}
+
+.input-group {
+  display: flex;
+  flex-flow: wrap;
+  gap: 0.7rem;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+
+.input-group-text {
+  display: flex;
+  flex-flow: column;
+}
+
+.option-output {
+  background-color: #333232;
+  background-image: url('https://cdn3.vectorstock.com/i/1000x1000/35/52/placeholder-rgb-color-icon-vector-32173552.jpg');
+  background-size: 100% 100%;
+  width: 5rem;
+  height: 5rem;
+  border: 1px solid darkslategray;
+}
