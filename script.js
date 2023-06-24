@@ -1,39 +1,85 @@
+const ASSETS = './assets/';
+
 class setScene {
-  constructor(nombre) {
-    this.nombre = nombre;
+  hero;
+  vehicle;
+  scene;
+  weapon;
+  
+  constructor(sceneName) {
+    this.sceneName = sceneName;
   }
 
-  heroesEnum = {
-    Luke: 'luke',
-    Gandalf: 'gandalf',
-    Harry: 'harry',
-    Marty: 'marty',
+  addHero(hero) {
+    this.hero = hero;
+  }
+
+  addVehicle(vehicle) {
+    this.vehicle = vehicle;
+  }
+
+  addScene(scene) {
+    this.scene = scene;
+  }
+
+  addWeapon(weapon) {
+    this.weapon = weapon;
+  }
+
+  getNames(){
+    return {
+      sceneName: this.sceneName, hero: this.hero, vehicle: this.vehicle,scene: this.scene,weapon: this.weapon};
+  }
+
+  heroesList = {
+    luke: ASSETS+'luke.jpg',
+    gandalf: ASSETS+'gandalf.jpg',
+    harry: ASSETS+'harry.jpg',
+    marty: ASSETS+'marty.jpg',
   };
 
   weaponList = {
     lightsaber:
-      'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ffortniteinsider.com%2Fwp-content%2Fuploads%2F2019%2F12%2FFortnite-Green-Lightsaber.png&f=1&nofb=1&ipt=9cc7f967f197c6f1293c3f16b6e2341972d4ba5a839a56fb242d3765795c29ef&ipo=images',
-    cane: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2Fd2%2F18%2F83%2Fd21883e6761187245fca2ec56647e606.png&f=1&nofb=1&ipt=c6c71884a5a8de46cb6ae4d2ebebce641a23834f6143153e61322ad761c3d74c&ipo=images',
-    wand: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pikpng.com%2Fpngl%2Fb%2F433-4334306_elder-wand-png.png&f=1&nofb=1&ipt=91899db433b5ec6999fb00bcbd56355a80f43f197900d7242777aaf95477784b&ipo=images',
+      ASSETS+'greensaber.png',
+    cane: ASSETS+'cane.png',
+    wand: ASSETS+'wand.png',
     hoverboard:
-      'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fseeninmovies.lukasbargoin.fr%2FView%2Fcontent%2Fupload%2Fhoverboard.png&f=1&nofb=1&ipt=d2c94c6fdf3821f163e53d80b0b9c03ce5d5f813bc4ad6c2d3a55bc96ccbde06&ipo=images',
+      ASSETS +'hoverboard.png',
+  };
+
+  sceneList = {
+    gondor:
+      ASSETS + 'gondor.jpg',
+    hill_valley: ASSETS + 'hill_valley.jpg',
+    hogwarts: ASSETS + 'hogwarts.jpg',
+    tatooine:
+      ASSETS + 'tatooine.jpg',
+  };
+
+  vehicleList = {
+    hipogrifo:
+      ASSETS + 'hipogrifo.jpg',
+    halconmillenario: ASSETS + 'halconmillenario.jpg',
+    sombragris: ASSETS + 'sombragris.jpg',
+    delorean:
+      ASSETS + 'delorean.jpg',
   };
 }
 
 (() => {
-  const charactersFieldSet = document.querySelector('#characters');
+  const scene = new setScene('Pelea épica');
+  const charactersFieldSet = document.getElementById('characters');
   const weaponEl = document.getElementById('weapon');
   const weaponBgEl = document.getElementById('weapon-img');
+  const characterBgEl = document.getElementById('charcater-img');
 
   function startListener() {
-    const scene = new setScene();
-
     charactersFieldSet.addEventListener('click', () => {
       const checked = charactersFieldSet.querySelector(
         'input[name="character"]:checked'
       ).value;
 
-      console.log(checked);
+      changeBackground(checked, characterBgEl, scene.heroesList);
     });
 
     weaponEl.addEventListener('mouseup', (evt) => {
@@ -41,8 +87,36 @@ class setScene {
     });
   }
 
+  /**
+   * Usar switch para determinar el tamaño del vehículo
+   */
+  function vehicleRange(){
+    // switch (key) {
+    //   case value:
+        
+    //     break;
+    
+    //   default:
+    //     break;
+    // }
+  }
+
   function changeBackground(value, bgEl, list) {
     bgEl.style.backgroundImage = `url(${list[value]})`;
+  }
+
+  /**
+   * Únicamente conectar esta función con el botón "Ver mensaje".
+   */
+  function playScene(){
+    const { sceneName,hero,vehicle,scene,weapon } = scene.getNames();
+
+    const mensaje = `${sceneName}: 
+    Nuestro héroe ${hero} fue a ${scene}, 
+    montando un ${vehicle},
+    para pelear con su ${weapon}`;
+
+    alert(mensaje);
   }
 
   startListener();
