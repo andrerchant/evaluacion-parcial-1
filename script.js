@@ -5,7 +5,7 @@ class setScene {
   vehicle;
   scene;
   weapon;
-  
+
   constructor(sceneName) {
     this.sceneName = sceneName;
   }
@@ -26,25 +26,26 @@ class setScene {
     this.weapon = weapon;
   }
 
-  getNames(){
+  getNames() {
     return {
-      sceneName: this.sceneName, hero: this.hero, vehicle: this.vehicle,scene: this.scene,weapon: this.weapon};
+      sceneName: this.sceneName, hero: this.hero, vehicle: this.vehicle, background: this.scene, weapon: this.weapon
+    };
   }
 
   heroesList = {
-    luke: ASSETS+'luke.jpg',
-    gandalf: ASSETS+'gandalf.jpg',
-    harry: ASSETS+'harry.jpg',
-    marty: ASSETS+'marty.jpg',
+    luke: ASSETS + 'luke.jpg',
+    gandalf: ASSETS + 'gandalf.jpg',
+    harry: ASSETS + 'harry.jpg',
+    marty: ASSETS + 'marty.jpg',
   };
 
   weaponList = {
     lightsaber:
-      ASSETS+'greensaber.png',
-    cane: ASSETS+'cane.png',
-    wand: ASSETS+'wand.png',
+      ASSETS + 'greensaber.png',
+    cane: ASSETS + 'cane.png',
+    wand: ASSETS + 'wand.png',
     hoverboard:
-      ASSETS +'hoverboard.png',
+      ASSETS + 'hoverboard.png',
   };
 
   sceneList = {
@@ -59,64 +60,105 @@ class setScene {
   vehicleList = {
     hipogrifo:
       ASSETS + 'hipogrifo.jpg',
-    halconmillenario: ASSETS + 'halconmilenario.jpg',
+    halconmilenario: ASSETS + 'halconmilenario.jpg',
     sombragris: ASSETS + 'sombragris.jpg',
     delorean:
       ASSETS + 'delorean.jpg',
   };
+
+  vehicleEnum = {
+    hipogrifo: 'hipogrifo',
+    halconmilenario: 'halconmilenario',
+    sombragris: 'sombragris',
+    delorean: 'delorean',
+  };
+
 }
 
 (() => {
   const scene = new setScene('Pelea épica');
-  const charactersFieldSet = document.getElementById('characters');
+
+  const characterEl = document.getElementById('characters');
+  const characterBgEl = document.getElementById('charcater-img');
   const weaponEl = document.getElementById('weapon');
   const weaponBgEl = document.getElementById('weapon-img');
-  const characterBgEl = document.getElementById('charcater-img');
+  const backgroundEl = document.getElementById('background');
+  const backgroundBgEl = document.getElementById('background-img');
+  const vehicleEl = document.getElementById('vehicle');
+  const vehicleBgEl = document.getElementById('vehicle-img');
+  const mensajeEl = document.getElementById('mensaje');
+
+  /**
+   * Únicamente conectar esta función con el botón "Ver mensaje".
+   */
+  function playScene() {
+    const { sceneName, hero, vehicle, background, weapon } = scene.getNames();
+
+    const mensaje = `${sceneName}: 
+    Nuestro héroe ${hero} fue a ${background}, 
+    montando un ${vehicle},
+    para pelear con su ${weapon}`;
+
+    alert(mensaje);
+  }
 
   function startListener() {
-    charactersFieldSet.addEventListener('click', () => {
-      const checked = charactersFieldSet.querySelector(
+    characterEl.addEventListener('click', () => {
+      const checked = characterEl.querySelector(
         'input[name="character"]:checked'
       ).value;
 
       changeBackground(checked, characterBgEl, scene.heroesList);
+      scene.addHero(checked);
     });
 
-    weaponEl.addEventListener('mouseup', (evt) => {
+    weaponEl.addEventListener('change', () => {
       changeBackground(weaponEl.value, weaponBgEl, scene.weaponList);
+      scene.addWeapon(weaponEl.value);
     });
+
+    backgroundEl.addEventListener('change', () => {
+      changeBackground(backgroundEl.value, backgroundBgEl, scene.sceneList);
+      scene.addScene(backgroundEl.value);
+    });
+
+    vehicleEl.addEventListener('change', () => {
+      vehicleRange(vehicleEl.value);
+    });
+
+    mensajeEl.addEventListener('click',()=>{
+      playScene();
+    })
   }
 
   /**
    * Usar switch para determinar el tamaño del vehículo
    */
-  function vehicleRange(){
-    // switch (key) {
-    //   case value:
-        
-    //     break;
-    
-    //   default:
-    //     break;
-    // }
+  function vehicleRange(number) {
+    let vehicleName = '';
+    switch (Number(number)) {
+      case 10:
+        vehicleName = 'sombragris';
+        break;
+      case 20:
+        vehicleName = 'hipogrifo';
+        break;
+      case 30:
+        vehicleName = 'delorean';
+        break;
+      case 40:
+        vehicleName = 'halconmilenario';
+        break;
+      default:
+        vehicleName = 'sombragris';
+        break;
+    }
+    changeBackground(vehicleName, vehicleBgEl, scene.vehicleList);
+    scene.addVehicle(vehicleName);
   }
 
   function changeBackground(value, bgEl, list) {
     bgEl.style.backgroundImage = `url(${list[value]})`;
-  }
-
-  /**
-   * Únicamente conectar esta función con el botón "Ver mensaje".
-   */
-  function playScene(){
-    const { sceneName,hero,vehicle,scene,weapon } = scene.getNames();
-
-    const mensaje = `${sceneName}: 
-    Nuestro héroe ${hero} fue a ${scene}, 
-    montando un ${vehicle},
-    para pelear con su ${weapon}`;
-
-    alert(mensaje);
   }
 
   startListener();
