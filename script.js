@@ -50,7 +50,7 @@ class setScene {
   sceneList = {
     gondor:
       ASSETS + 'gondor.jpg',
-    hill_valley: ASSETS + 'hill_valley.jpg',
+    hill_valley: ASSETS + 'hill_valley.png',
     hogwarts: ASSETS + 'hogwarts.jpg',
     tatooine:
       ASSETS + 'tatooine.jpg',
@@ -59,7 +59,7 @@ class setScene {
   vehicleList = {
     hipogrifo:
       ASSETS + 'hipogrifo.jpg',
-    halconmillenario: ASSETS + 'halconmillenario.jpg',
+    halconmillenario: ASSETS + 'halconmilenario.jpg',
     sombragris: ASSETS + 'sombragris.jpg',
     delorean:
       ASSETS + 'delorean.jpg',
