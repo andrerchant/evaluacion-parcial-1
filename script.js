@@ -88,6 +88,13 @@ class setScene {
   const vehicleBgEl = document.getElementById('vehicle-img');
   const mensajeEl = document.getElementById('mensaje');
 
+  const initialValuesMap = {
+    character: {value: 'luke', bg: characterBgEl, list: scene.heroesList},
+    vehicle: {value: scene.vehicleEnum.sombragris, bg: vehicleBgEl, list: scene.vehicleList},
+    background: {value: 'tatooine', bg: backgroundBgEl, list: scene.sceneList},
+    weapon: {value: 'lightsaber', bg: weaponBgEl, list: scene.weaponList}
+  }
+
   /**
    * Únicamente conectar esta función con el botón "Ver mensaje".
    */
@@ -127,7 +134,8 @@ class setScene {
     });
 
     mensajeEl.addEventListener('click',()=>{
-      playScene();
+      if(checkTouchedInputs()) playScene();
+      else alert('Toca todos los controles al menos una vez');
     })
   }
 
@@ -135,22 +143,22 @@ class setScene {
    * Usar switch para determinar el tamaño del vehículo
    */
   function vehicleRange(number) {
-    let vehicleName = '';
+    let vehicleName;
     switch (Number(number)) {
       case 10:
-        vehicleName = 'sombragris';
+        vehicleName = scene.vehicleEnum.sombragris;
         break;
       case 20:
-        vehicleName = 'hipogrifo';
+        vehicleName = scene.vehicleEnum.hipogrifo;
         break;
       case 30:
-        vehicleName = 'delorean';
+        vehicleName = scene.vehicleEnum.delorean;
         break;
       case 40:
-        vehicleName = 'halconmilenario';
+        vehicleName = scene.vehicleEnum.halconmilenario;
         break;
       default:
-        vehicleName = 'sombragris';
+        vehicleName = scene.vehicleEnum.sombragris;
         break;
     }
     changeBackground(vehicleName, vehicleBgEl, scene.vehicleList);
@@ -161,5 +169,21 @@ class setScene {
     bgEl.style.backgroundImage = `url(${list[value]})`;
   }
 
+  function initialbackgrounds() {
+    const initialValues = Object.values(initialValuesMap);
+    for(const initial of initialValues) {
+      const {value, bg, list} = initial;
+      changeBackground(value, bg, list);
+    }
+  }
+
+  function checkTouchedInputs(){
+    const NAMES_FULL_LENGTH = 5;
+    const names = Object.values(scene.getNames());
+    const namesAreTrue = names.filter(Boolean).length
+    return NAMES_FULL_LENGTH === namesAreTrue;
+  }
+
   startListener();
+  initialbackgrounds();
 })();
